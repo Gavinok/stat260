@@ -22,7 +22,7 @@ REMEMBER this is related to the population not a sample
 sigma sup 2 = V(X) = E[(X - mu )]
 .EN
 
-The \fB standard deviation of @X sub 1@ written @sigma sub 1 @ is @sigma = sqrt {sigma sup 2 }@
+The \fB standard deviation\fP of @X sub 1@ written @sigma sub 1 @ is @sigma = sqrt {sigma sup 2 }@
 
 .LP
 We can interpret V(X) in a similar way to E(X): If we were to carry out

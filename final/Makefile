@@ -1,42 +1,59 @@
-ROFF = troff
+ROFF = groff
 ROFFOPTS =
+GROFFPRE = -kept
+GROFFOPTS = $(GROFFPRE) $(ROFFOPTS)
 MACROS = -mspdf
 ROFFEXT = ms
-PRE = pic | tbl| eqn 
+PRE = preconv | pic | tbl | eqn 
 POST = grops
 POSTOPTS = 
-GSOPTS =-dPDFSETTINGS=/prepress -sPAPERSIZE=a4 -dNumRenderingThreads=2
+PDFROFF = pdfroff
+PDFROPTS = --no-toc-relocation
+PDFPOST = 
 TARGETFORMAT = pdf
+CLEANLINTERCMD = sed -e 's/\.clean//'
 SRCS = $(shell find -type f -name '*.$(ROFFEXT)' )
 TARGET := $(addsuffix .$(TARGETFORMAT),$(basename $(SRCS)))
-CLEANLINTERCMD = sed -e 's/\.clean//'
+ERRORFILE=log.error
 
-all: FINAL.pdf
+all: ${TARGET}
 
-.SUFFIXES: .tr .ms .ps .pdf
+.SUFFIXES: .tr .ms .ps .pdf .PDF
 
 .ps.pdf:
 	ps2pdf $< $@
 
 .$(ROFFEXT).ps:
-	cat $< | preconv | $(PRE) | $(ROFF) $(ROFFOPTS)  $(MACROS) | $(POST) $(POSTOPTS) >$@
+ifeq ($(ROFF),groff)
+	$(ROFF) $(GROFFOPTS) $(MACROS) -Z 2>$(ERRORFILE) $< | $(POST) $(POSTOPTS) >$@
+else
+	cat $< | $(PRE) | $(ROFF) $(ROFFOPTS)  $(MACROS) | $(POST) $(POSTOPTS) >$@
+endif
+	$(MAKE) checkerrors
+	
 
-FINAL.ms:
-	cat *.$(ROFFEXT) > $@
+.$(ROFFEXT).PDF:
+ifeq ($(PDFROFF),pdfroff)
+	$(PDFROFF) $(PDFROPTS) $(GROFFOPTS) $(MACROS) $< 2>$(ERRORFILE) > $@
+else
+	cat $< | $(PRE) | $(PDFROFF) $(ROFFOPTS) $(MACROS) | $(PDFPOST) > $@
+endif
+	$(MAKE) checkerrors
 
-release: ${SRCS}
-	pdfroff $(ROFFOPTS) $(PRE) $(MACROS) $< > $@
+checkerrors: $(ERRORFILE) 
+	@sed "s/<standard input>/$</g" $(ERRORFILE) 
+	rm -f $(ERRORFILE)
 
 %.clean: ${SRCS}
 	deroff $< > $@
 
 lint: ${SRCS}.clean
-	-grep -Hn "[−’•]" $<  | $(CLEANLINTERCMD)
+	-grep -Hn "[−’]" $<  | $(CLEANLINTERCMD)
 	writegood --parse $< | $(CLEANLINTERCMD)
 	proselint $<         | $(CLEANLINTERCMD)
 	rm $<
 
 clean:
-	rm -f *.pdf
+	rm -f *.pdf *.PDF
 
 .PHONY: clean all lint test

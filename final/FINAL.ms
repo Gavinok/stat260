@@ -1516,7 +1516,7 @@ f(x) = P(X=x)
 .NH 2
 .XN "Probability Distribution Table"
 .TS
-box tab(|);
+center box tab(|);
 c| cccc.
 x|0|1|...|10
 _
@@ -1533,6 +1533,7 @@ Construct the probability distribution table for the random variable X, where \f
 
 Outcomes {BBB,VBB,BVB,BBV,VVB,VBV,BVV,VVV}
 
+.CD
 @X=0 -> BBB@
 
 @X=1 -> VBB,BVB,BBV@
@@ -1542,6 +1543,7 @@ Outcomes {BBB,VBB,BVB,BBV,VVB,VBV,BVV,VVV}
 @x=3 -> VVV@
 
 R.V. X Support of X = @left { 0,1,2,3 right }@
+.DE
 .EQ
 f(0) = P(X=D) = P(BBB) = 0.8 times 0.8 times 0.8 = 0.512
 .EN
@@ -1566,16 +1568,13 @@ f(2) = P( left { VVV right } )
 = 0.2 sup 3 = 0.003
 .EN
 .TS
-box tab(|);
+center box tab(|);
 c|cccc.
 x   |0     |1     |2     |3
 _
 f(x)| 0.512| 0.384| 0.096| 0.008
 .TE
-.NOTE ""
-.EQ L
-sum from x f(x) = 1
-.EN
+.NOTE "@sum from x f(x) = 1@)
 .KE
 .KS
 What is the probability that exactly one veggie taco will be
@@ -1601,8 +1600,8 @@ P(X >= 2) = P(X=2) + P(X=3)
 Suppose we know that at \fBleast one veggie taco\fP is ordered.
 What is the probability that \fBexactly two veggie tacos\fP will be ordered?
 
-.PP
-\fBConditional Probability\fP
+.NH
+.XN "Conditional Probability"
 .EQ
 P( X=2 | X >=1 )
 .EN
@@ -1614,7 +1613,7 @@ P(A|B) = { P(A inter B ) } over P(B)
 = {P( X = 2 inter X >= 1) }over P(>=1) = { P(X=2)} over {P(X>=1 )}
 .EN
 .TS
-box tab(|);
+center box tab(|);
 c|cccc.
 x   |0    |1    |2    |3
 _
@@ -1637,7 +1636,7 @@ Suppose the random variable X has the following probability
 distribution:
 
 .TS
-tab(|);
+center tab(|);
 c|c|c|c|c|c|.
 x    | 1  | 2   | 3   | 4  | 5
 _
@@ -1662,7 +1661,7 @@ F(4) = 0.7
 F(5) = 1
 .EN
 .TS
- tab(|);
+ center tab(|);
 c|c|c|c|c|c.
 x   |1  |2   |3  |4  |5
 _
@@ -1673,7 +1672,7 @@ F(x)|0.3|0.45|0.5|0.7|1
 The easier way is to just add them
 
 .TS
-tab(|);
+center tab(|);
 c|c|c|c|c|c|.
 x    | 1  | 2   | 3   | 4  | 5
 _
@@ -1682,7 +1681,9 @@ _
 F(x) | 0.3| 0.45| 0.5| 0.7| 1
 .TE
 .KE
+.CD
 f(x) \[->] F(X)
+.DE
 
 .KS
 .NH 2
@@ -1781,7 +1782,7 @@ F(x)| 0.15 |0.25 |0.4| 0.6| 0.75 |0.90| 1
 .DE
 
 .CD
-Remember F(X) = P(X<=x)
+Remember @F(X) = P(X<=x)@
 .DE
 
 .IP - 2
@@ -1926,7 +1927,7 @@ E(Y) - E(g(X)) = sum g(x)P(X=x) = sum from x g(x)f(x) == mu sub y == mu sub g(x)
 .SH
 Example
 .LP
-Using the pmf from the previous example, find E(X + 2), and E(X 2 ).
+Using the pmf(aka f(x)) from the previous example, find E(X + 2), and @E(X sup 2 )@.
 
 .TS
  tab(|);
@@ -1963,18 +1964,22 @@ E(X sup 2 ) = 0(0.216)+  1 cdot ( 0.432 ) + 4 cdot (  0.288) + 9 cdot ( 0.064)
 .EQ
 2.16 != 1.44
 .EN
-.NOTE " In this example, and in most cases, E(X 2 ) is not the same thing"
+.NOTE " In this example, and in most cases, @E(X sup 2 )@ is not the same thing"
 as [E(X)] 2 .
-.EQ L
+.EQ
 E(x sup 2 ) != [E(X)] sup 2
 .EN
+.CD
 In general
+.DE
 .EQ
 E[g(x)] != g(E(X))
 .EN
+.CD
 When is E[g(x) = g[E(X)] ?
 
 When g(x) is linear y = ax + b
+.DE
 .KE
 
 .NH
@@ -2050,7 +2055,7 @@ Example
 Suppose a random variable X has the following cdf:
 .CD
 .TS
- tab(|);
+center tab(|);
 c|c|c|c.
 x|1| 2|3
 _
@@ -2067,7 +2072,7 @@ must convert to f(x)
 
 .CD
 .TS
- tab(|);
+center tab(|);
 c|c|c|c.
 x|1| 2|3
 _
@@ -2294,7 +2299,7 @@ Gavin Jaeger-Freeborn
 .XN "Recap up to set 11"
 .LP
 .TS
-allbox tab(|);
+center allbox tab(|);
 ccc.
 Capital letters | X, Y, ... | Random Variables (r.v) |
 small letters | x, y, ... | numerical values|
@@ -2306,14 +2311,12 @@ discrete r.v | @P(X=x) = f(x)@| pmf
 Parameters quantities about population
 .LP
 .TS
-allbox tab(|);
+center allbox tab(|);
 cc.
 @E(X) = mu@ | mean, or expected clue
 @V(X) = sigma sup 2@ | variance
 @SD(X) = sigma @ | standard deviation
 .TE
-.EQ
-.EN
 
 .KS
 .NH
@@ -3242,7 +3245,8 @@ which @F prime (x)@ exists, that @F prime (x) = f (x)@.
 .SH
 Example
 .LP
-Suppose the random variable X has the following cdf:
+Suppose the random variable X has the following cdf (aka @F(x)@):
+
 
 .EQ
 F(x) = left {
@@ -3764,15 +3768,15 @@ k = 2 ( 1.645 ) + 15 = 18.29
 
 .KS
 .NH
-.XN "empirical rule"
+.XN "Empirical Rule"
 .LP
 The empirical rule states that if the distribution of a variable is approximately normal, then:
 
-.IP 1. 2
+.IP 1. 3
 About 68% of values lie within σ of the mean.
-.IP 2. 2
+.IP 2. 3
 About 95% of values lie within 2σ of the mean.
-.IP 1. 2
+.IP 3. 3
 About 99.7% of values lie within 3σ of the mean.
 
 .PSPIC pic/empirical.eps
@@ -3791,48 +3795,48 @@ sigma = 2
 .NH
 .XN "Approximating the Binomial Distribution with the Normal Distribution"
 .LP
-Suppose @X ∼ Bin(n, p)@ where @np@ and @n(1 - p)@ are both at least 5.
+Suppose @X ^\[ti]^ Bin(n, p)@ where @np@ and @n(1 - p)@ are both at least 5.
 
-Then  @X ~= N ( mu = np , sigma sup 2 = n p ( 1 - p ))@
+Then  @X approx N ( mu = np , sigma sup 2 = n p ( 1 - p ))@
 
 This means that:
 
-.CD
+.RS
 if
-.DE
+.RE
 .EQ
 np >= 5, ~ and ~ n ( 1 - p ) >= 5
 .EN
 
 .EQ
-P(X <= x ) ~= P left ( Z <= { x - np } over { sqrt { n p ( 1 - p ) } } right )
+P(X <= x ) approx P left ( Z <= { x - np } over { sqrt { n p ( 1 - p ) } } right )
 .EN
 
 Since we are using continuous distribution to approximate a discreet one , this approximation will be slightly off. If we with to get a better approximation us the following, with a \f[B]continuity correction\f[P]
 
 .EQ
-P ( X <= x ) ~= P ( X <= x + 0.5 )
+P ( X <= x ) approx P ( X <= x + 0.5 )
 .EN
 
-.CD
-The @ + 0.5@ is for correction
-.DE
-
 .EQ
-~= P left ( Z <= { x - np + 5 } 
+approx P left ( Z <= { x - np + 5 } 
 over
 { sqrt { np ( 1 - p ) } }
 right )
 .EN
+.IP
+.NOTE "The @ + 0.5@ is for correction"
+.LP
 
+
+.IP
 eg
+.LP
 .EQ
-P( X <= 3 ) = P ( x <= 3 + 0.5)
+P( X <= 3 ) approx P ( x <= 3 + 0.5)
 .EN
-
 .KE
-
-.KS
+.KS \"{{{
 .SH
 Example
 .LP
@@ -3883,9 +3887,9 @@ USING THE TABLE
 .EQ
 1 - 0.0043 = 0.9957
 .EN
-.KE
+.KE \" }}}
 
-.KS
+.KS \" {{{
 .SH
 Example
 .LP
@@ -3914,9 +3918,9 @@ FROM TABLE
 = 0.6368 - 0.2578  = 0.379
 .EN
 .DE
-.KE
+.KE \" }}}
 
-.KS
+.KS \" {{{
 .SH
 Example
 .LP
@@ -3939,7 +3943,7 @@ P ( y = 3 ) = left ( pile { 5 above 3 } right ) 0.379 sup 3 ( 1 - 0.379 ) sup 2
 .EQ
 = 0.210
 .EN
-.KE
+.KE \" }}}
 
 .EQ
 delim @@
@@ -4034,7 +4038,7 @@ For most values of α, β a closed-form expression for the cdf does not exist; t
 .SH
 Example
 .LP
-Suppose @X ∼ Gamma(α = 2, β = 3)@. Calculate @P (X =< 5)@.
+Suppose @X ∼ Gamma(α = 2, β = 3)@. Calculate @P (X <= 5)@.
 
 .EQ
 f ( x) = 1 over { beta sup alpha GAMMA ( alpha ) } x sup { alpha -1} e sup {-x over beta } dx
@@ -4280,6 +4284,7 @@ For this example
 .KS
 .NH
 .XN "Sets 18 and 19 Joint Distribution"
+\" .pdfhref W -D "https://coursespaces.uvic.ca/local/kalturamediagallery/index.php?courseid=78161" -- "Joint Distrobution Video Stat260_June_10"
 .LP
 Let @X@ and @Y@ be discrete random variables defined on some sample space @S@.
 The \f[B]joint probability function\f[P]  @f (x, y)@ is defined as:
@@ -4376,15 +4381,23 @@ Example
 Find @f sub X (x)@ and @f sub Y (y)@ for the previous example.
 
 .TS
- tab(|);
+center tab(|);
 cc|lll|l.
 |||@y@
 @f(x,y)@| |0    |1    |2|
 _
-|0|0.512          |0.000          |\f[B]0.000\f[P]|@(y=0) + (y = 1) + (y = 2) + (y=3) @
-@x@|1|0.000          |0.102          |\f[B]0.008\f[P]|@(y=0) + (y = 1) + (y = 2) + (y=3) @
-|2|\f[B]0.000\f[P]|\f[B]0.175\f[P]|\f[B]0.089\f[P]|@(y=0) + (y = 1) + (y = 2) + (y=3) @
-|3|\f[B]0.000\f[P]|\f[B]0.015\f[P]|\f[B]0.099\f[P]|@(y=0) + (y = 1) + (y = 2) + (y=3) @
+|0|0.512|0.000          |\f[B]0.000\f[P]|T{
+@(y=0) + (y = 1) +@@ (y = 2) + (y=3) @
+T}
+@x@|1|0.000|0.102          |\f[B]0.008\f[P]|T{
+@(y=0) + (y = 1) +@@ (y = 2) + (y=3) @
+T}
+|2|\f[B]0.000\f[P]|\f[B]0.175\f[P]|\f[B]0.089\f[P]|T{
+@(y=0) + (y = 1) +@@ (y = 2) + (y=3) @
+T}
+|3|\f[B]0.000\f[P]|\f[B]0.015\f[P]|\f[B]0.099\f[P]|T{
+@(y=0) + (y = 1) +@@ (y = 2) + (y=3) @
+T}
 _
 ||T{
 @(x=0)@ +@(x = 1)@ +@(x = 2)@
@@ -4396,7 +4409,7 @@ T}|
 .TE
 
 .TS
- tab(|);
+ center tab(|);
 cc|lll|l.
 |||@y@
 @f(x,y)@| |0    |1    |2|
@@ -4416,7 +4429,7 @@ T}|
 .TE
 
 .TS
- tab(|);
+ center tab(|);
 c|llll.
 @x@|0    |1    |2|3|
 _
@@ -4428,7 +4441,7 @@ E(X) =  mu sub x = 0(0.512)+ 1 ( 0.110) + 2 ( 0.264 ) + 3(0.114)  = 0.98
 .EN
 
 .TS
- tab(|);
+ center tab(|);
 c|lll.
 @y@|0    |1    |2
 _
@@ -4456,7 +4469,7 @@ We can extend our definitions quite naturally to any sequence @X sub 1 , X sub 2
 
 .EN
 .EQ
-f(0,0) lineup = f sub X (0) cdot f sub Y (0)  ~ roman ?
+f(0,0) = f sub X (0) cdot f sub Y (0)  ~ roman ?
 .EN
 
 .EQ
@@ -4605,7 +4618,7 @@ Z = { X - mu } over sigma
 .EN
 is: Standard Normal
 
-.NOTE " @ P( Z > z ) = P( Z < -z )@ for using the table we must have  @P( Z < z )@ from"
+.NOTE " @ P( Z > z ) = P( Z < -z )@ for using the table we must have  @P( Z < z )@ form"
 .KE
 
 .KS
@@ -4627,6 +4640,25 @@ sample median   | @ X tilde = median(X sub  1 , X  sub 2 ,..., X  sub n )@
 .NOTE " the value is @x bar , t, x sup 2 , x tilde@ while @X bar  , T , S sup 2 , X tilde @ is a random variable."
 
 .NOTE " we want @X sub i \[ti] @Some Distribution and have she same @mu@, @sigma sup 2@, @sigma@"
+
+suppose that @X sub 1 ,... X sub N@ are independent with the same @mu@ and @sigma sup 2@
+
+If we let @{X bar = X sub 1 + ··· + X sub  n} over n@ ypu can show that.
+.IP \(bu
+E(X) = µ
+.IP \(bu
+V (X) = { sigma sup 2 } over n
+.IP \(bu
+@ sigma sub X bar = sigma over {sqrt n} @
+.LP
+Similarly if @ T = X sub 1 + ... + X sub n @ you can show that:
+.IP \(bu
+@E(T) = n mu@
+.IP \(bu
+@V (T) = n sigma sup 2@
+.IP \(bu
+@sigma sub T = sigma sqrt n@
+.LP
 .KE
 .KS
 .NH
@@ -4694,13 +4726,58 @@ P( X bar < 356ml)
 = P( Z < {356 - 355} over 1 )
 .EN
 .EQ
-= P(Z < 1 )
+= P(Z <= 1 )
 .EN
 .CD
 FROM TABLE
 .DE
 .EQ
 0.8413
+.EN
+.KE
+
+.KS
+.SH
+Example
+.LP
+The mass of an adult male greater flamingo is normally dis-
+tributed, with µ = 4.5 kg, σ = 0.3 kg. The mass of an adult female greater flamingo is normally distributed with µ = 2 kg, σ = 0.1 kg. Suppose that a male and female greater flamingo are randomly selected and weighed together. What is the \f[B]probability that the total mass exceeds 7kg\f[P]?
+
+.EQ
+x sub 1 = male~mass \[ti] N (4.5 , 0.4)
+.EN
+.EQ
+x sub 2 = female~mass \[ti] N (2 , 0.1)
+.EN
+.EQ
+T = X sub 1 + X sub 2
+.EN
+.NOTE "remember that T is total"
+
+.EQ
+T \[ti] N ( n mu , sigma sqrt n )
+.EN
+.EQ
+mu sub T = E( T ) = E( X sub 1 + X sub 2 ) = mu sub 1 + mu sub 2 = 4.5+2 = 6.5 
+.EN
+.EQ
+sigma sub T sup 2 = V (T) = V (X sub 1 + X sub 2 ) = V ( x sub 1 ) + V ( X sub 2 ) = 0.3 sup 2 + 0.1 sup 2 = 0.1
+.EN
+.EQ
+sigma sub T = sqrt 0.1
+.EN
+.EQ
+T \[ti] N ( 6.5 , sqrt 0.1 )
+.EN
+.note " since they are independant the COV(X sub 1 , X sub 2) = 0"
+.EQ
+P ( T > 7 ) = P ( Z > {7 - 6.5 } over {sqrt 0.1} )
+.EN
+.EQ
+= P ( Z > {7 - 6.5 } over {sqrt 0.1} )
+.EN
+.EQ
+= P ( Z < - 1.58 ) = 0.0571
 .EN
 .KE
 
@@ -5216,7 +5293,8 @@ This is just @ sigma sub { X bar } = sigma over {sqrt n} = 5.4 over {sqrt 50}@
 
 .BX "\[tf] the confidence interval is (77.5032, 80.4968)"
 
-This means that we are 95% confident that the mean for the population falls somewhere between 77.5032 and 80.4968. So if we take 100 samples we should get 95 results between these values.
+This means that we are 95% confident that the mean for the population falls somewhere between 77.5032
+and 80.4968. So if we take 100 samples we should get 95 results between these values.
 .DE
 
 .KE
@@ -5953,7 +6031,7 @@ Z sub {obs} = {346.4 - 350} over {3.5 / sqrt 5} = -3.6 over 1.5652 = -2.23
 .NOTE " the 1.5652 is the estimated standard error (e.s.e)"
 
 .IP 5.
-@ p-value = 2 times P(Z> 2.23) = 2 times p (z < -2.23)@
+@ p-value = 2 times P(Z> 2.23) = 2 times P (Z < -2.23)@
 
 @= 2 times 0.0129@
 
@@ -6437,7 +6515,7 @@ PROOF
 .nr PS 12
 .nr GROWPS 2
 .TL
-STATS 260 Class 22
+STATS 260 Class 23
 .AU
 Gavin Jaeger-Freeborn
 
